@@ -6,6 +6,12 @@ Perfect for any data-driven architecture using ScriptableObjects
 
 ---
 
+## Video
+
+Watch the tool in action on YouTube:
+
+[![Watch on YouTube](https://img.shields.io/badge/YouTube-Watch%20Demo-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/@mehmetalihanaydn4872)
+
 # Installation
 
 ## Install via Unity Package Manager

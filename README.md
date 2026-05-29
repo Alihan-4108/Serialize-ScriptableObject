@@ -10,7 +10,7 @@ Perfect for any data-driven architecture using ScriptableObjects
 
 Watch the tool in action on YouTube:
 
-[![Watch on YouTube](https://img.shields.io/badge/YouTube-Watch%20Demo-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/@mehmetalihanaydn4872)
+[![Watch on YouTube](https://img.shields.io/badge/YouTube-Watch%20Demo-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=eYn04t0tYYM)
 
 # Installation
 

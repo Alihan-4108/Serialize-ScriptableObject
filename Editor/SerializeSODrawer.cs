@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using static UnityEditor.EditorGUI;
@@ -19,9 +20,9 @@ namespace Alihan4108.SerializeScriptableObject
                 return;
             }
 
-            if (!typeof(ScriptableObject).IsAssignableFrom(fieldInfo.FieldType))
+            if (!IsValidType(fieldInfo.FieldType))
             {
-                EditorGUI.HelpBox(position, $"[SerializeSO] yalnızca ScriptableObject tiplerinde kullanılabilir.", MessageType.Error);
+                HelpBox(position, "[SerializeSO] can only be used on ScriptableObject or Component types.", MessageType.Error);
                 return;
             }
 
@@ -50,13 +51,46 @@ namespace Alihan4108.SerializeScriptableObject
                 {
                     Editor.CreateCachedEditor(property.objectReferenceValue, null, ref cachedEditor);
 
-                    EditorGUILayout.BeginVertical(new GUIStyle(GUI.skin.window));
+                    var attr = (SerializeSOAttribute)attribute;
+
+                    DrawHeader(property, attr.color);
+
+                    var style = new GUIStyle(GUI.skin.window);
+                    style.padding = new RectOffset(10, 10, 10, 10);
+
+                    EditorGUILayout.BeginVertical(style);
 
                     cachedEditor.OnInspectorGUI();
 
                     EditorGUILayout.EndVertical();
                 }
             }
+        }
+
+        private void DrawHeader(SerializedProperty property, string hexColor)
+        {
+            var attr = (SerializeSOAttribute)attribute;
+
+            string headerLabel = attr.label != "" ? attr.label : property.objectReferenceValue.name;
+
+            ColorUtility.TryParseHtmlString(hexColor, out Color color);
+
+            Rect headerRect = EditorGUILayout.GetControlRect(false, 24f);
+
+            var labelStyle = new GUIStyle(EditorStyles.boldLabel);
+            labelStyle.normal.textColor = color;
+            labelStyle.alignment = attr.titleAlignment;
+            labelStyle.padding = new RectOffset(8, 0, 0, 0);
+
+            LabelField(headerRect, headerLabel, labelStyle);
+        }
+
+        private static bool IsValidType(Type type)
+        {
+            if (typeof(GameObject).IsAssignableFrom(type)) return false;
+            if (typeof(Transform).IsAssignableFrom(type)) return false;
+
+            return typeof(ScriptableObject).IsAssignableFrom(type) || typeof(Component).IsAssignableFrom(type);
         }
     }
 }

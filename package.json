@@ -1,0 +1,10 @@
+{
+    "name": "com.alihan-4108.serialize-scriptableobject",
+    "version": "1.0.0",
+    "displayName": "Serialize ScriptableObject",
+    "description": "Speed up your workflow with a single attribute — edit your ScriptableObjects directly in the Inspector.",
+    "unity": "2022.3",
+    "author": {
+        "name": "Alihan Aydin"
+    }
+}
